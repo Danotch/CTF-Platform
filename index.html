@@ -1,30 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flag Hunt Challenge</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Web Flag Hunt Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .flag-box {
+            margin: 20px 0;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Flag Hunt Challenge!</h1>
-        <p>Can you find the hidden flag?</p>
-    </header>
+    <div class="container">
+        <h1>Welcome to the Web Flag Hunt Challenge!</h1>
+        <p>You've stumbled upon a mysterious website, and there's a hidden flag somewhere within the site's content.</p>
 
-    <main>
-        <section>
-            <p>Hidden in the source code is a flag that you need to discover. Enter the flag below to check if it's correct.</p>
-            <form id="flagForm">
-                <input type="text" id="flagInput" placeholder="Enter the flag">
-                <button type="button" id="submitButton">Submit</button>
-            </form>
-            <p id="result"></p>
-        </section>
-    </main>
+        <div class="flag-box">
+            <p>Can you find the hidden flag and submit it as your answer?</p>
+            <input type="text" id="flagInput" placeholder="Enter the flag">
+            <button onclick="checkFlag()">Submit</button>
+        </div>
+        
+        <div id="flagResult" class="result"></div>
+    </div>
 
-    <footer>
-        <p>Hint: The flag is hidden within an HTML comment.</p>
-    </footer>
+    <script>
+        function checkFlag() {
+            // Get the entered flag
+            var enteredFlag = document.getElementById("flagInput").value;
 
-    <script src="script.js"></script>
+            // Define the correct flag
+            var correctFlag = "Flag{Web_Hunt_Fl@g}";
+
+            // Remove any leading/trailing spaces from the entered flag
+            enteredFlag = enteredFlag.trim();
+
+            // Check if the entered flag matches the correct flag
+            if (enteredFlag === correctFlag) {
+                document.getElementById("flagResult").innerHTML = "Congratulations! You've found the correct flag.";
+                document.getElementById("flagResult").style.color = "green";
+                document.getElementById("flagInput").style.display = "none";
+                document.querySelector("button").style.display = "none";
+            } else {
+                document.getElementById("flagResult").innerHTML = "Oops, the flag is incorrect. Keep searching!";
+                document.getElementById("flagResult").style.color = "red";
+            }
+        }
+    </script>
 </body>
 </html>
